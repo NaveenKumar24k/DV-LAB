@@ -4,7 +4,6 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import statsmodels.api as sm
 
-# Load the dataset
 df = pd.read_csv("sales.csv")
 
 # Display the first few rows of the dataset to confirm it's loaded correctly
@@ -46,7 +45,6 @@ for predictor in predictors:
 X_with_const = sm.add_constant(X)  # Add constant for intercept
 model_sm = sm.OLS(Y, X_with_const).fit()
 
-# Print the summary of the model
 print(model_sm.summary())
 
 # Perform t-tests for each predictor
@@ -60,8 +58,7 @@ for predictor in predictors:
         print(f"{predictor} is a statistically significant predictor of SalesRevenue.")
     else:
         print(f"{predictor} is NOT a statistically significant predictor of SalesRevenue.")
-
-# Perform an F-test for overall model significance
+        
 f_statistic = model_sm.fvalue
 p_value_f = model_sm.f_pvalue
 
